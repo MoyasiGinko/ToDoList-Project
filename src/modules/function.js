@@ -1,8 +1,6 @@
 // Getting started
 const inputField = document.querySelector('.input-field textarea');
 const todoLists = document.querySelector('.todoLists');
-// const pendingNum = document.querySelector('.pending-num');
-// const clearButton = document.querySelector('.clear-button');
 
 // Add task while put value
 inputField.addEventListener('keyup', (e) => {
