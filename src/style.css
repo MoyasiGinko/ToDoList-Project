@@ -28,6 +28,10 @@ body {
   width: 100%;
 }
 
+.container .my-todo {
+  margin-bottom: 16px;
+}
+
 textarea {
   overflow: hidden;
 }
@@ -59,11 +63,13 @@ textarea {
 }
 
 .input-field textarea:focus ~ .note-icon {
-  border-color: #4070f4;
+  color: #4070f4;
 }
 
 .container .todoLists {
-  margin-top: 20px;
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 10px;
 }
 
 .todoLists .list {
@@ -82,8 +88,7 @@ textarea {
   height: 16px;
   min-width: 16px;
   color: #4070f4;
-
-  /* pointer-events: none; */
+  pointer-events: none;
 }
 
 .todoLists .list .task {
@@ -91,7 +96,7 @@ textarea {
   word-break: break-all;
 }
 
-.todoLists .list input:checked ~ .task {
+.list input:checked ~ .task {
   text-decoration: line-through;
 }
 
@@ -135,8 +140,16 @@ textarea {
   font-size: 14px;
   border-radius: 4px;
   cursor: pointer;
+  pointer-events: none;
+  white-space: nowrap;
 }
 
 .clear-button:hover {
   background-color: #0e4bf1;
+}
+
+@media screen and (max-width: 350px) {
+  .container {
+    padding: 25px 10px;
+  }
 }
