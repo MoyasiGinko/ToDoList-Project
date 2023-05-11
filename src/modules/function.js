@@ -9,7 +9,7 @@ inputField.addEventListener('keyup', (e) => {
   const inputVal = inputField.value.trim();
 
   if (e.key === 'Enter' && inputVal.length > 0) {
-    const liTag = `        <li class="list">
+    const liTag = `        <li class="list" onclick="handleStatus(this)">
           <input type="checkbox" />
           <span class="task">${inputVal}</span>
           <i class="uil uil-trash"></i>
