@@ -1,14 +1,46 @@
-![](https://github.com/MoyasiGinko/ToDoList-Project/murple_logo.png)
+<div align="center">
+  <!-- You are encouraged to replace this logo with your own! Otherwise you can also remove it. -->
 
-# To-do List
+  <br/>
+
+  <h3><b>To Do List</b></h3>
+
+</div>
+
+# To Do List
+
+<!-- TABLE OF CONTENTS -->
+
+# 📗 Table of Contents
+
+- [📖 About the Project](#about-project)
+  - [🛠 Built With](#built-with)
+    - [Tech Stack](#tech-stack)
+    - [Key Features](#key-features)
+  - [🚀 Live Demo](#live-demo)
+- [💻 Getting Started](#getting-started)
+  - [Setup](#setup)
+  - [Prerequisites](#prerequisites)
+  - [Install](#install)
+  - [Usage](#usage)
+  - [Run tests](#run-tests)
+  - [Deployment](#run-tests)
+- [👷‍♂️ Author](#authors)
+- [🔭 Future Features](#future-features)
+- [🤝 Contributing](#contributing)
+- [⭐️ Show your support](#support)
+- [🙏 Acknowledgements](#acknowledgements)
+- [📝 License](#license)
+
+<!-- PROJECT DESCRIPTION -->
+
+# 📖 to do list <a name="about-project"></a>
+
+**To Do List**
 
 > "To-do list" is a tool that helps to organize your day. It simply lists the things that you need to do and allows you to mark them as complete. In this particular repo, We are building this To-do list with using HTML, CSS, JavaScript (ES6), and Webpack.
 
-## Live Demo
-
-:fire::fire: <https://MoyasiGinko.github.io/ToDoList-Project/dist/> :fire::fire:
-
-## Built With
+## 🛠 Built With <a name="built-with"></a>
 
 - HTML
 - CSS
@@ -16,16 +48,49 @@
 - Webpack
 - Jest
 
-## Getting Started
+### Tech Stack <a name="tech-stack"></a>
 
-You can directly clone this repo and run the following.
+<details>
+  <summary>Languages and technologies</summary>
+  <ul>
+    <li><a href="#">HTML</a></li>
+  </ul>
+    <ul>
+    <li><a href="#">CSS3</a></li>
+  </ul>
+    <ul>
+    <li><a href="#">VScode</a></li>
+  </ul>
+    <ul>
+    <li><a href="#">Git and GitHub</a></li>
+  </ul>
+</details>
+
+<!-- Features -->
+
+### Key Features <a name="key-features"></a>
+
+- **Easy navigation**
+- **Personalized product**
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- GETTING STARTED -->
+
+## 💻 Getting Started <a name="getting-started"></a>
+
+To get a local copy up and running, follow these steps.
 
 ### Prerequisites
+
+In order to run this project you need GitHub account and a text editor.
 
 - Node.js
 - npm
 
 ### Setup
+
+Clone this repository to your desired folder:
 
 ```
 git clone git@github.com:MoyasiGinko/ToDoList-Project.git
@@ -37,6 +102,8 @@ cd ToDoList-Project
 ```
 Open the project using a live sever extension that can be found within your code editor extensions.
 ```
+
+### Install
 
 - Once you clone the repo, go to the directory and run `npm install` command to get all necessary instalations.
 
@@ -53,7 +120,13 @@ npm run watch
 npm start
 ```
 
-## Running tests
+### Usage
+
+To run the project, execute the following command:
+
+N/A
+
+### Run tests
 
 ```
 npm run test
@@ -61,7 +134,13 @@ npm run test
 
 - ...in your bash (assuming you are in the root of this project);
 
-## Author
+### Deployment
+
+You can deploy this project using: webpack in your local machine.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 👷‍♂️ Author <a name="authors"></a>
 
 👤 **Moyasi**
 
@@ -69,26 +148,44 @@ npm run test
 - Twitter: [@MoyasiGinko](https://twitter.com/moyasi_ginko)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/mahmudur-rahman-a8a151257)
 
-## 🤝 Contributing
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🔭 Future Features <a name="future-features"></a>
+
+- [ ] **[interactive functions]**
+- [ ] **[Footer]**
+- [ ] **[Profile picture]**
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🤝 Contributing <a name="contributing"></a>
 
 Contributions, issues, and feature requests are welcome!
 
 Feel free to check the [issues page](../../issues/).
 
-### Contributors
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-I would like to thank Microverse.
+<!-- SUPPORT -->
 
+## ⭐️ Show your support <a name="support"></a>
 
-Give a ⭐️ if you like this project!
+If you get inspired by this project you can give me a star 🙌
 
-## Acknowledgments
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-These packages are super useful for handling the `localStorage` and `DOM` mocks so that we don't have to create them by ourselves:
+<!-- ACKNOWLEDGEMENTS -->
 
-- npm [jest-localstorage-mock](https://www.npmjs.com/package/jest-localstorage-mock) package
-- npm [jest-environment-jsdom](https://www.npmjs.com/package/jest-environment-jsdom) package
+## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-## 📝 License
+I would like to thank Microverse
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- LICENSE -->
+
+## 📝 License <a name="license"></a>
 
 This project is [MIT](./MIT.md) licensed.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
