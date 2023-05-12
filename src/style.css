@@ -88,7 +88,7 @@ textarea {
   height: 16px;
   min-width: 16px;
   color: #4070f4;
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 
 .todoLists .list .task {
@@ -140,7 +140,7 @@ textarea {
   font-size: 14px;
   border-radius: 4px;
   cursor: pointer;
-  pointer-events: none;
+  /* pointer-events: none; */
   white-space: nowrap;
 }
 
