@@ -19,7 +19,7 @@ class Data {
   setTasks(tasks) {
     // Assign new index values based on order in array
     tasks.forEach((task, index) => {
-      task.index = index;
+      task.index = index + 1;
     });
     this.#tasks = tasks;
     this.renderTasks();
@@ -44,7 +44,7 @@ class Data {
         };
         this.#tasks.push(newTask);
         this.#tasks.forEach((task, index) => {
-          task.index = index;
+          task.index = index + 1;
         }); // update index values
         this.renderTasks();
         inputField.value = '';
@@ -66,7 +66,7 @@ class Data {
   deleteData = (index) => {
     this.#tasks.splice(index, 1);
     this.#tasks.forEach((task, index) => {
-      task.index = index;
+      task.index = index + 1;
     }); // update index values
     this.renderTasks();
     this.pendingTasks();
