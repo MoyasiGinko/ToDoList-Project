@@ -1,4 +1,6 @@
 import '../style.css';
+import EditTask from './function.js';
+import { ClearTask, updateStorage } from './clear.js';
 
 class Data {
   #tasks;
@@ -7,6 +9,7 @@ class Data {
     this.#tasks = [];
     this.renderTasks();
     this.addData();
+    ClearTask(this);
   }
 
   getTasks() {
@@ -14,9 +17,19 @@ class Data {
   }
 
   setTasks(tasks) {
+    // Assign new index values based on order in array
+    tasks.forEach((task, index) => {
+      task.index = index;
+    });
     this.#tasks = tasks;
     this.renderTasks();
   }
+
+  pendingTasks = () => {
+    const pendingNum = document.querySelector('.pending-num');
+    const pendingTasks = this.#tasks.filter((task) => !task.completed);
+    pendingNum.textContent = pendingTasks.length === 0 ? 'no' : pendingTasks.length;
+  };
 
   addData = () => {
     const inputField = document.querySelector('.input-field textarea');
@@ -28,11 +41,15 @@ class Data {
         const newTask = {
           description: inputVal,
           completed: false,
-          index: this.#tasks.length,
         };
         this.#tasks.push(newTask);
+        this.#tasks.forEach((task, index) => {
+          task.index = index;
+        }); // update index values
         this.renderTasks();
         inputField.value = '';
+        this.pendingTasks();
+        updateStorage(this.#tasks);
       }
     });
   };
@@ -42,11 +59,18 @@ class Data {
   updateData = (index, newData) => {
     this.#tasks[index] = newData;
     this.renderTasks();
+    this.pendingTasks();
+    updateStorage(this.#tasks);
   };
 
   deleteData = (index) => {
     this.#tasks.splice(index, 1);
+    this.#tasks.forEach((task, index) => {
+      task.index = index;
+    }); // update index values
     this.renderTasks();
+    this.pendingTasks();
+    updateStorage(this.#tasks);
   };
 
   renderTasks = () => {
@@ -85,11 +109,22 @@ class Data {
 
       const taskInput = element.querySelector('.task');
       taskInput.addEventListener('blur', () => {
-        task.description = taskInput.value;
-        this.updateData(index, task);
+        EditTask.editDescription(
+          index,
+          taskInput.value,
+          this.#tasks,
+          this.setTasks.bind(this),
+        );
+      });
+
+      // add click event listener to task input field
+      taskInput.addEventListener('click', (e) => {
+        // enable editing of task description when clicked
+        e.target.removeAttribute('disabled');
       });
 
       todolist.appendChild(element);
+      this.pendingTasks();
     });
   };
 }
