@@ -69,29 +69,30 @@ textarea {
 .container .todoLists {
   max-height: 380px;
   overflow-y: auto;
-  padding-right: 10px;
 }
 
 .todoLists .list {
   display: flex;
   align-items: center;
   list-style: none;
-  background-color: #f2f2f2;
-  padding: 20px 15px;
+  background-color: #d8fcff;
+  box-shadow: 0 5px 10px rgba(0, 41, 63, 0.1);
+  width: 100%;
+  padding: 1px 15px;
   border-radius: 8px;
   margin-top: 10px;
   position: relative;
   cursor: pointer;
 }
 
-.todoLists .list input {
-  height: 16px;
-  min-width: 16px;
+.todoLists .list .checkbox {
+  height: 18px;
+  min-width: 18px;
   color: #4070f4;
 }
 
 .todoLists .list .task {
-  margin: 0 30px 0 15px;
+  /* margin: 0 30px 0 15px; */
   word-break: break-all;
 }
 
@@ -117,6 +118,7 @@ textarea {
 
 .todoLists .list i:hover {
   opacity: 1;
+  color: #fd9797;
 }
 
 .container .pending-tasks {
@@ -144,6 +146,43 @@ textarea {
 
 .clear-button:hover {
   background-color: #0e4bf1;
+}
+
+#task-input {
+  outline-style: none;
+  padding: 20px;
+  border: none;
+  border-radius: 6px;
+  width: 100%;
+  height: max-content;
+  font-size: 18px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  margin-left: 12px;
+  margin-right: -13px;
+}
+
+input[type='checkbox'] {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-right: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+input[type='checkbox']:focus {
+  outline: 2px solid #2196f3;
+  box-shadow: 0 0 5px #ccc;
+  outline-offset: 2px;
+}
+
+input[type='checkbox']:checked {
+  background-color: #2196f3;
+  border-color: #2196f3;
 }
 
 @media screen and (max-width: 350px) {
