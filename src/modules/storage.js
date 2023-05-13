@@ -1,3 +1,4 @@
+// Update the values to the localstorage
 class LocalStorage {
   constructor(storageKey) {
     this.storageKey = storageKey;

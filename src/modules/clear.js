@@ -1,3 +1,4 @@
+// A Class for clearing tasks from the task lists
 export const updateStorage = (tasks) => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 };

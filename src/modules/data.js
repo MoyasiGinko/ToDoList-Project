@@ -1,3 +1,4 @@
+// Data & CRUD methods implementation
 import '../style.css';
 import EditTask from './function.js';
 import { ClearTask, updateStorage } from './clear.js';
@@ -87,10 +88,10 @@ class Data {
       }
 
       element.innerHTML = `
-      <input type="checkbox" class="checkbox" ${
+      <input type="checkbox" id="check" class="checkbox" ${
         task.completed ? 'checked' : ''
       }>
-      <input type="text" class="task" value="${task.description}" ${
+      <input type="text" class="task" id="task-input" value="${task.description}" ${
         task.completed ? 'disabled' : ''
       }>
       <i class="uil uil-trash"></i>
