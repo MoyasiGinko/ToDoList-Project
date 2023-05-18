@@ -69,7 +69,7 @@ describe('addTask function', () => {
     ];
 
     addTask(tasks, inputVal, renderTasks, pendingTasks, updateStorage);
-
+        
     expect(tasks).toEqual(expectedTasks);
   });
 
