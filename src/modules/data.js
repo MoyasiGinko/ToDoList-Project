@@ -1,7 +1,7 @@
-// Data & CRUD methods implementation
 import '../style.css';
 import { renderTasks } from './app.js';
 import { ClearTask, updateStorage } from './clear.js';
+import { deleteData, addTask } from './taskUtils.js';
 
 class Data {
   #tasks;
@@ -46,33 +46,29 @@ class Data {
     const inputField = document.querySelector('.input-field textarea');
     const noteIcon = document.querySelector('.input-field .note-icon');
 
-    const addTask = () => {
+    const handleAddTask = () => {
       const inputVal = inputField.value.trim();
 
       if (inputVal.length > 0) {
-        const newTask = {
-          description: inputVal,
-          completed: false,
-        };
-        this.#tasks.push(newTask);
-        this.#tasks.forEach((task, index) => {
-          task.index = index + 1;
-        }); // update index values
-        this.renderTasks();
+        addTask(
+          this.#tasks,
+          inputVal,
+          this.renderTasks,
+          this.pendingTasks,
+          updateStorage,
+        );
         inputField.value = '';
-        this.pendingTasks();
-        updateStorage(this.#tasks);
       }
     };
 
     inputField.addEventListener('keyup', (e) => {
       if (e.key === 'Enter') {
-        addTask();
+        handleAddTask();
       }
     });
 
     noteIcon.addEventListener('click', () => {
-      addTask();
+      handleAddTask();
     });
   };
 
@@ -86,13 +82,13 @@ class Data {
   };
 
   deleteData = (index) => {
-    this.#tasks.splice(index, 1);
-    this.#tasks.forEach((task, index) => {
-      task.index = index + 1;
-    }); // update index values
-    this.renderTasks();
-    this.pendingTasks();
-    updateStorage(this.#tasks);
+    deleteData(
+      this.#tasks,
+      index,
+      this.renderTasks,
+      this.pendingTasks,
+      updateStorage,
+    );
   };
 }
 
