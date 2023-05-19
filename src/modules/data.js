@@ -1,7 +1,7 @@
-// Data & CRUD methods implementation
 import '../style.css';
-import EditTask from './function.js';
+import { renderTasks } from './app.js';
 import { ClearTask, updateStorage } from './clear.js';
+import { deleteData, addTask } from './taskUtils.js';
 
 class Data {
   #tasks;
@@ -26,6 +26,16 @@ class Data {
     this.renderTasks();
   }
 
+  renderTasks = () => {
+    renderTasks(
+      this.#tasks,
+      this.deleteData.bind(this),
+      this.updateData.bind(this),
+      this.setTasks.bind(this),
+      this.pendingTasks,
+    );
+  };
+
   pendingTasks = () => {
     const pendingNum = document.querySelector('.pending-num');
     const pendingTasks = this.#tasks.filter((task) => !task.completed);
@@ -34,24 +44,31 @@ class Data {
 
   addData = () => {
     const inputField = document.querySelector('.input-field textarea');
+    const noteIcon = document.querySelector('.input-field .note-icon');
 
-    inputField.addEventListener('keyup', (e) => {
+    const handleAddTask = () => {
       const inputVal = inputField.value.trim();
 
-      if (e.key === 'Enter' && inputVal.length > 0) {
-        const newTask = {
-          description: inputVal,
-          completed: false,
-        };
-        this.#tasks.push(newTask);
-        this.#tasks.forEach((task, index) => {
-          task.index = index + 1;
-        }); // update index values
-        this.renderTasks();
+      if (inputVal.length > 0) {
+        addTask(
+          this.#tasks,
+          inputVal,
+          this.renderTasks,
+          this.pendingTasks,
+          updateStorage,
+        );
         inputField.value = '';
-        this.pendingTasks();
-        updateStorage(this.#tasks);
       }
+    };
+
+    inputField.addEventListener('keyup', (e) => {
+      if (e.key === 'Enter') {
+        handleAddTask();
+      }
+    });
+
+    noteIcon.addEventListener('click', () => {
+      handleAddTask();
     });
   };
 
@@ -65,68 +82,13 @@ class Data {
   };
 
   deleteData = (index) => {
-    this.#tasks.splice(index, 1);
-    this.#tasks.forEach((task, index) => {
-      task.index = index + 1;
-    }); // update index values
-    this.renderTasks();
-    this.pendingTasks();
-    updateStorage(this.#tasks);
-  };
-
-  renderTasks = () => {
-    const todolist = document.querySelector('.todoLists');
-    todolist.innerHTML = '';
-
-    this.#tasks.forEach((task, index) => {
-      const element = document.createElement('li');
-
-      if (task.completed === true) {
-        element.classList.add('completed', 'list');
-      } else {
-        element.classList.add('in-progress', 'list');
-      }
-
-      element.innerHTML = `
-      <input type="checkbox" id="check" class="checkbox" ${
-        task.completed ? 'checked' : ''
-      }>
-      <input type="text" class="task" id="task-input" value="${task.description}" ${
-        task.completed ? 'disabled' : ''
-      }>
-      <i class="uil uil-trash"></i>
-    `;
-
-      const trashIcon = element.querySelector('.uil-trash');
-      trashIcon.addEventListener('click', () => {
-        this.deleteData(index);
-      });
-
-      const checkbox = element.querySelector('.checkbox');
-      checkbox.addEventListener('change', () => {
-        task.completed = !task.completed;
-        this.updateData(index, task);
-      });
-
-      const taskInput = element.querySelector('.task');
-      taskInput.addEventListener('blur', () => {
-        EditTask.editDescription(
-          index,
-          taskInput.value,
-          this.#tasks,
-          this.setTasks.bind(this),
-        );
-      });
-
-      // add click event listener to task input field
-      taskInput.addEventListener('click', (e) => {
-        // enable editing of task description when clicked
-        e.target.removeAttribute('disabled');
-      });
-
-      todolist.appendChild(element);
-      this.pendingTasks();
-    });
+    deleteData(
+      this.#tasks,
+      index,
+      this.renderTasks,
+      this.pendingTasks,
+      updateStorage,
+    );
   };
 }
 

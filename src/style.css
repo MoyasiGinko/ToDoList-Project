@@ -57,9 +57,9 @@ textarea {
   top: 50%;
   right: 15px;
   transform: translateY(-50%);
-  pointer-events: none;
   font-size: 24px;
   color: #707070;
+  cursor: pointer;
 }
 
 .input-field textarea:focus ~ .note-icon {
@@ -118,7 +118,7 @@ textarea {
 
 .todoLists .list i:hover {
   opacity: 1;
-  color: #fd9797;
+  color: #f97070;
 }
 
 .container .pending-tasks {
@@ -157,9 +157,14 @@ textarea {
   height: max-content;
   font-size: 18px;
   font-family: 'Poppins', sans-serif;
-  font-weight: 300;
+  font-weight: 400;
   margin-left: 12px;
   margin-right: -13px;
+  color: #333;
+}
+
+#task-input:focus {
+  background-color: #dde6ff;
 }
 
 input[type='checkbox'] {
@@ -188,5 +193,11 @@ input[type='checkbox']:checked {
 @media screen and (max-width: 350px) {
   .container {
     padding: 25px 10px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .todoLists .list i {
+    display: inline-flex;
   }
 }
