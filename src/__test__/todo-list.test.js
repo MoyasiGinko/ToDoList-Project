@@ -1,5 +1,6 @@
 import { deleteData, addTask } from '../modules/taskUtils.js';
 import EditTask from '../modules/function.js';
+import CompletedTask from '../modules/completed.js';
 import { set } from 'lodash';
 
 describe('deleteData function', () => {
@@ -109,11 +110,33 @@ describe('editTask function', () => {
     const expectedTasks = [
       { description: 'Task 1', completed: false, index: 1 },
       { description: 'New Description', completed: false, index: 2 },
+      
     ];
 
     EditTask.editDescription(
       taskIndex,
       newDescription,
+      tasks,
+      setTasks,
+      updateStorage,
+    );
+
+    expect(setTasks).toHaveBeenCalledWith(expectedTasks);
+  });
+
+  
+  test('should mark tasks to completed', () => {
+    taskIndex = 1;
+
+    const expectedTasks = [
+      { description: 'Task 1', completed: false, index: 1 },
+      { description: 'Task 2', completed: true, index: 2 },
+      
+    ];
+
+    CompletedTask.markComplete(
+      taskIndex,
+      {completed: true},
       tasks,
       setTasks,
       updateStorage,
