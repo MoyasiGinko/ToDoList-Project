@@ -13,8 +13,8 @@ export default class CompletedTask {
         return task;
       });
   
-      setTasks(updatedTasks); // Update the tasks with the edited description
-      updateStorage(updatedTasks); // Save the changes to the storage
+      setTasks(updatedTasks); 
+      updateStorage(updatedTasks); 
     }
   }
   
