@@ -149,6 +149,12 @@ You can deploy this project using: webpack in your local machine.
 - Twitter: [@MoyasiGinko](https://twitter.com/moyasi_ginko)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/mahmudur-rahman-a8a151257)
 
+👤 **Sylvester WAMAYA**
+
+- GitHub: [@githubhandle](https://github.com/sylvester-wamaya)
+- Twitter: [@twitterhandle](https://twitter.com/The_Seal_)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/sylvester-wamaya-b11a93112/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🔭 Future Features <a name="future-features"></a>
