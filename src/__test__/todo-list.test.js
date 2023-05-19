@@ -1,4 +1,6 @@
 import { deleteData, addTask } from '../modules/taskUtils.js';
+import EditTask from '../modules/function.js';
+import { set } from 'lodash';
 
 describe('deleteData function', () => {
   let tasks;
@@ -79,5 +81,44 @@ describe('addTask function', () => {
     expect(renderTasks).toHaveBeenCalled();
     expect(pendingTasks).toHaveBeenCalled();
     expect(updateStorage).toHaveBeenCalledWith(tasks);
+  });
+});
+
+describe('editTask function', () => {
+  let taskIndex;
+  let newDescription;
+  let tasks;
+  let setTasks;
+  let updateStorage;
+
+  beforeEach(() => {
+    tasks = [
+      { description: 'Task 1', completed: false, index: 1 },
+      { description: 'Task 2', completed: false, index: 2 },
+    ];
+
+    newDescription = 'New Description';
+
+    setTasks = jest.fn();
+    updateStorage = jest.fn();
+  });
+
+  test('should edit and update tasks', () => {
+    taskIndex = 1;
+
+    const expectedTasks = [
+      { description: 'Task 1', completed: false, index: 1 },
+      { description: 'New Description', completed: false, index: 2 },
+    ];
+
+    EditTask.editDescription(
+      taskIndex,
+      newDescription,
+      tasks,
+      setTasks,
+      updateStorage,
+    );
+
+    expect(setTasks).toHaveBeenCalledWith(expectedTasks);
   });
 });
