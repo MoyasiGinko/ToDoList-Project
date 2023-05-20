@@ -1,6 +1,18 @@
-// A Class for clearing tasks from the task lists
 export const updateStorage = (tasks) => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
+};
+
+export const clearCompleted = (tasks) => {
+  const updatedTasks = tasks.filter((task) => !task.completed);
+  updatedTasks.forEach((task, index) => {
+    task.index = index + 1;
+  });
+  return updatedTasks;
+};
+
+export const complete = (tasks, index) => {
+  const task = tasks[index];
+  task.completed = !task.completed;
 };
 
 export const ClearTask = (dataInstance) => {
@@ -14,10 +26,12 @@ export const ClearTask = (dataInstance) => {
       const tasks = dataInstance.getTasks().filter((task) => !task.completed);
       dataInstance.setTasks(tasks);
     }
+    clearCompleted(dataInstance.getTasks());
 
     // update storage with the latest tasks
     updateStorage(dataInstance.getTasks());
 
     dataInstance.pendingTasks();
   });
+  clearCompleted(dataInstance.getTasks());
 };
