@@ -1,7 +1,7 @@
 import { deleteData, addTask } from '../modules/taskUtils.js';
 import EditTask from '../modules/function.js';
 import CompletedTask from '../modules/completed.js';
-import { set } from 'lodash';
+import { clearCompleted, complete } from '../modules/clear.js';
 
 describe('deleteData function', () => {
   let tasks;
@@ -110,7 +110,6 @@ describe('editTask function', () => {
     const expectedTasks = [
       { description: 'Task 1', completed: false, index: 1 },
       { description: 'New Description', completed: false, index: 2 },
-      
     ];
 
     EditTask.editDescription(
@@ -118,7 +117,7 @@ describe('editTask function', () => {
       newDescription,
       tasks,
       setTasks,
-      updateStorage
+      updateStorage,
     );
 
     expect(setTasks).toHaveBeenCalledWith(expectedTasks);
@@ -137,30 +136,63 @@ describe('editTask function', () => {
       { completed: true },
       tasks,
       setTasks,
-      updateStorage
-    );
-
-    expect(setTasks).toHaveBeenCalledWith(expectedTasks);
-  });
-
-  
-  test('should mark tasks to completed', () => {
-    taskIndex = 1;
-
-    const expectedTasks = [
-      { description: 'Task 1', completed: false, index: 1 },
-      { description: 'Task 2', completed: true, index: 2 },
-      
-    ];
-
-    CompletedTask.markComplete(
-      taskIndex,
-      {completed: true},
-      tasks,
-      setTasks,
       updateStorage,
     );
 
     expect(setTasks).toHaveBeenCalledWith(expectedTasks);
+  });
+});
+
+describe('clearCompleted', () => {
+  test('removes all completed tasks from the array', () => {
+    const tasks = [
+      { description: 'Task 1', completed: true, index: 1 },
+      { description: 'Task 2', completed: false, index: 2 },
+      { description: 'Task 3', completed: true, index: 3 },
+    ];
+
+    const updatedTasks = clearCompleted(tasks);
+
+    expect(updatedTasks).toEqual([
+      { description: 'Task 2', completed: false, index: 1 },
+    ]);
+  });
+
+  test('updates the index property of remaining tasks in the array', () => {
+    const tasks = [
+      { description: 'Task 1', completed: true, index: 1 },
+      { description: 'Task 2', completed: false, index: 2 },
+      { description: 'Task 3', completed: true, index: 3 },
+    ];
+
+    const updatedTasks = clearCompleted(tasks);
+
+    expect(updatedTasks[0].index).toBe(1);
+  });
+});
+
+describe('complete', () => {
+  test('completes a task that is not already completed', () => {
+    const tasks = [
+      { description: 'Task 1', completed: false, index: 1 },
+      { description: 'Task 2', completed: false, index: 2 },
+      { description: 'Task 3', completed: false, index: 3 },
+    ];
+
+    complete(tasks, 1);
+
+    expect(tasks[1].completed).toBe(true);
+  });
+
+  test('uncompletes a task that is already completed', () => {
+    const tasks = [
+      { description: 'Task 1', completed: true, index: 1 },
+      { description: 'Task 2', completed: false, index: 2 },
+      { description: 'Task 3', completed: false, index: 3 },
+    ];
+
+    complete(tasks, 0);
+
+    expect(tasks[0].completed).toBe(false);
   });
 });
